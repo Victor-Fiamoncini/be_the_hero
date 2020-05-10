@@ -10,6 +10,8 @@ module.exports = {
 		module: true,
 		__dirname: true,
 		process: true,
+		require: true,
+		exports: true,
 	},
 	parserOptions: {
 		ecmaVersion: 11,

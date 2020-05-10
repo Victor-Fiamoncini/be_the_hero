@@ -1,21 +1,23 @@
-import express from 'express'
+import express, { Application } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 
 import routes from './routes'
 
 export default class App {
-	constructor() {
+	private app: Application
+
+	public constructor() {
 		this.app = express()
 
 		this.middlewares()
 	}
 
-	get getApplication() {
+	public get getApplication(): Application {
 		return this.app
 	}
 
-	middlewares() {
+	private middlewares(): void {
 		this.app.use(express.json())
 		this.app.use(cors())
 		this.app.use(morgan('dev'))
