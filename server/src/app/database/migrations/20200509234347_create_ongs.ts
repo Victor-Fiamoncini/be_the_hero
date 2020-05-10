@@ -8,7 +8,7 @@ export async function up(knex: Knex): Promise<any> {
 		table.string('whatsapp').notNullable()
 		table.string('city').notNullable()
 		table.string('uf', 2).notNullable()
-		table.timestamps(true)
+		table.timestamps(true, true)
 	})
 }
 

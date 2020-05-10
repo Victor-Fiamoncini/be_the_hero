@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<any> {
 		table.string('description').notNullable()
 		table.decimal('value').notNullable()
 		table.string('ong_id').notNullable()
-		table.timestamps(true)
+		table.timestamps(true, true)
 
 		table.foreign('ong_id').references('id').inTable('ongs')
 	})
