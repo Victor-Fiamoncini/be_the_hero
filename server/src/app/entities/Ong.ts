@@ -22,27 +22,27 @@ export default class Ong {
 		this.uf = uf
 	}
 
-	public get _id() {
+	public get _id(): string {
 		return this.id
 	}
 
-	public get _name() {
+	public get _name(): string {
 		return this.name
 	}
 
-	public get _email() {
+	public get _email(): string {
 		return this.email
 	}
 
-	public get _whatsapp() {
+	public get _whatsapp(): string {
 		return this.whatsapp
 	}
 
-	public get _city() {
+	public get _city(): string {
 		return this.city
 	}
 
-	public get _uf() {
+	public get _uf(): string {
 		return this.uf
 	}
 }

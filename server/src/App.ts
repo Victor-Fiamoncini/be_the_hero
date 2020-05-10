@@ -13,7 +13,7 @@ export default class App {
 		this.middlewares()
 	}
 
-	public get getApplication(): Application {
+	public get _app(): Application {
 		return this.app
 	}
 

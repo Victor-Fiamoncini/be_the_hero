@@ -1,5 +1,5 @@
 export default interface IWrite<T> {
-	create(entity: T): Promise<T | boolean>
-	update(id: string, entity: T): Promise<T | boolean>
-	delete(id: string): Promise<T | boolean>
+	create(entity: T): Promise<string | T>
+	update(id: string, entity: T): Promise<string | T>
+	delete(id: string): Promise<string | T>
 }

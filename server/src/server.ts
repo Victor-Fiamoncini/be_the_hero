@@ -6,6 +6,6 @@ config({ path: resolve(__dirname, '..', '.env') })
 import App from './App'
 
 const { PORT } = process.env
-const { getApplication } = new App()
+const { _app } = new App()
 
-getApplication.listen(PORT, () => console.log(`Server running at: ${PORT}`))
+_app.listen(PORT, () => console.log(`Server running at: ${PORT}`))

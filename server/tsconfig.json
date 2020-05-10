@@ -7,7 +7,7 @@
 		"rootDir": "./src",
 		"outDir": "./build",
 		"allowJs": true,
-		"strict": true,
+		"noImplicitAny": false,
 		"esModuleInterop": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
