@@ -21,6 +21,6 @@ export default class App {
 		this.app.use(express.json())
 		this.app.use(cors())
 		this.app.use(morgan('dev'))
-		this.app.use(routes)
+		this.app.use('/v1', routes)
 	}
 }

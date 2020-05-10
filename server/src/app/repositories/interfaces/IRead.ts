@@ -1,4 +1,4 @@
 export default interface IRead<T> {
-	find(entity: T): Promise<T[]>
+	find(): Promise<T[]>
 	findOne(id: string): Promise<T>
 }

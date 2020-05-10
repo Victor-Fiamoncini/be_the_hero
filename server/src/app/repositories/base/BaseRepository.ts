@@ -8,7 +8,7 @@ export default abstract class BaseRepository<T> implements IWrite<T>, IRead<T> {
 
 	public abstract async delete(id: string): Promise<T | boolean>
 
-	public abstract async find(entity: T): Promise<T[]>
+	public abstract async find(): Promise<T[]>
 
 	public abstract async findOne(id: string): Promise<T>
 }

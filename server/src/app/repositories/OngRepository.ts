@@ -15,15 +15,19 @@ export default class OngRepository extends BaseRepository<Ong> {
 
 		return entity
 	}
+
 	public async update(id: string, entity: Ong): Promise<boolean> {
 		throw new Error('Method not implemented.')
 	}
+
 	public async delete(id: string): Promise<boolean> {
 		throw new Error('Method not implemented.')
 	}
-	public async find(entity: Ong): Promise<Ong[]> {
-		throw new Error('Method not implemented.')
+
+	public async find(): Promise<Ong[]> {
+		return await connection('ongs').select('*')
 	}
+
 	public async findOne(id: string): Promise<Ong> {
 		throw new Error('Method not implemented.')
 	}
