@@ -1,3 +1,3 @@
-# Omnistack 11
+# Be The Hero
 
-Simple rockeseat web application, built with 💚 Vue.JS, Express, Knex
+Simple ONGs helper web application, built with 💚 Typescript, Vue.JS, Express, Knex...
