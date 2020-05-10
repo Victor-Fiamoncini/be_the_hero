@@ -6,13 +6,13 @@ import OngRepository from '../app/repositories/OngRepository'
 
 const router = Router()
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 	const { name, email, whatsapp, city, uf } = req.body
 	try {
 		const ongPayload = new Ong(v4(), name, email, whatsapp, city, uf)
-
 		const ongRepository = new OngRepository()
-		const ong = ongRepository.create(ongPayload)
+
+		const ong = await ongRepository.create(ongPayload)
 
 		return res.status(201).json(ong)
 	} catch (err) {

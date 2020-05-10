@@ -4,7 +4,7 @@ import { config } from 'dotenv'
 
 config({ path: resolve(__dirname, '..', '..', '..', '.env') })
 
-export default {
+module.exports = {
 	development: {
 		client: 'postgresql',
 		connection: {

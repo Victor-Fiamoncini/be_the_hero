@@ -12,7 +12,8 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"sourceMap": true,
-		"strictPropertyInitialization": false
+		"strictPropertyInitialization": false,
+		"suppressImplicitAnyIndexErrors": true
 	},
 	"include": ["./src/*"]
 }
