@@ -10,9 +10,9 @@ class IncidentController {
 			const incidentPayload = new Incident(title, description, value, ongId)
 			const incidentDao = new IncidentDAO('incidents')
 
-			const incident = await incidentDao.create(incidentPayload)
+			const id = await incidentDao.create(incidentPayload)
 
-			return res.status(201).json(incident)
+			return res.status(201).json({ id })
 		} catch (err) {
 			return res.status(500).json({ error: err })
 		}

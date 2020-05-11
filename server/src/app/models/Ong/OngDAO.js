@@ -6,17 +6,17 @@ export default class OngDAO extends BaseDAO {
 		super(tableName)
 	}
 
-	async create(entity) {
+	async create(ong) {
 		await knex(this.tableName).insert({
-			id: entity.id,
-			name: entity.name,
-			email: entity.email,
-			whatsapp: entity.whatsapp,
-			city: entity.city,
-			uf: entity.uf,
+			id: ong.id,
+			name: ong.name,
+			email: ong.email,
+			whatsapp: ong.whatsapp,
+			city: ong.city,
+			uf: ong.uf,
 		})
 
-		return entity
+		return ong
 	}
 
 	async find() {

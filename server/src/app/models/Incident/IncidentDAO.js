@@ -6,16 +6,16 @@ export default class IncidentDAO extends BaseDAO {
 		super(tableName)
 	}
 
-	async create(entity) {
-		const res = await knex(this.tableName).insert({
-			title: entity.title,
-			description: entity.description,
-			value: entity.title,
-			ong_id: entity.ongId,
-		})
+	async create(incident) {
+		const [id] = await knex(this.tableName)
+			.insert({
+				title: incident.title,
+				description: incident.description,
+				value: incident.value,
+				ong_id: incident.ongId,
+			})
+			.returning('id')
 
-		console.log(res)
-
-		return 'res._ongId'
+		return id
 	}
 }

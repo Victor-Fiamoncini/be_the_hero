@@ -6,6 +6,7 @@ import OngDAO from '../models/Ong/OngDAO'
 class OngController {
 	async create(req, res) {
 		const { name, email, whatsapp, city, uf } = req.body
+
 		try {
 			const ongPayload = new Ong(v4(), name, email, whatsapp, city, uf)
 			const ongDao = new OngDAO('ongs')
