@@ -1,6 +1,5 @@
-import 'ts-node/register'
-import { resolve } from 'path'
-import { config } from 'dotenv'
+const { resolve } = require('path')
+const { config } = require('dotenv')
 
 config({ path: resolve(__dirname, '..', '..', '..', '.env') })
 
