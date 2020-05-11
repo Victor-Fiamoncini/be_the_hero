@@ -1,16 +1,21 @@
-import BaseRepository from './base/BaseRepository'
-import Ong from '../entities/Ong'
-import knex from '../database/connection'
+import BaseDAO from '../BaseDAO'
+import Ong from './Ong'
 
-export default class OngRepository extends BaseRepository<Ong> {
+import knex from '../../database/connection'
+
+export default class OngDAO extends BaseDAO<Ong> {
+	public constructor(tableName: string) {
+		super(tableName)
+	}
+
 	public async create(entity: Ong): Promise<string | Ong> {
-		await knex('ongs').insert({
-			id: entity._id,
-			name: entity._name,
-			email: entity._email,
-			whatsapp: entity._whatsapp,
-			city: entity._city,
-			uf: entity._uf,
+		await knex(this.tableName).insert({
+			id: entity.id,
+			name: entity.name,
+			email: entity.email,
+			whatsapp: entity.whatsapp,
+			city: entity.city,
+			uf: entity.uf,
 		})
 
 		return entity
@@ -25,7 +30,7 @@ export default class OngRepository extends BaseRepository<Ong> {
 	}
 
 	public async find(): Promise<Ong[]> {
-		return await knex('ongs').select('*')
+		return await knex(this.tableName).select('*')
 	}
 
 	public async findOne(id: string): Promise<Ong> {

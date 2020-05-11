@@ -1,15 +1,22 @@
-import BaseRepository from './base/BaseRepository'
-import Incident from '../entities/Incident'
-import knex from '../database/connection'
+import BaseDAO from '../BaseDAO'
+import Incident from './Incident'
 
-export default class IncidentRepository extends BaseRepository<Incident> {
+import knex from '../../database/connection'
+
+export default class IncidentDAO extends BaseDAO<Incident> {
+	public constructor(tableName: string) {
+		super(tableName)
+	}
+
 	public async create(entity: Incident): Promise<string | Incident> {
-		const res = await knex('incidents').insert({
-			title: entity._title,
-			description: entity._description,
-			value: entity._title,
-			ong_id: entity._ongId,
+		const res = await knex(this.tableName).insert({
+			title: entity.title,
+			description: entity.description,
+			value: entity.title,
+			ong_id: entity.ongId,
 		})
+
+		console.log(res)
 
 		return 'res._ongId'
 	}

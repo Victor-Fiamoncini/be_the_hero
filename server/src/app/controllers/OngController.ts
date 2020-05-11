@@ -1,17 +1,17 @@
 import { Request, Response } from 'express'
 import { v4 } from 'uuid'
 
-import Ong from '../entities/Ong'
-import OngRepository from '../repositories/OngRepository'
+import Ong from '../models/Ong/Ong'
+import OngDAO from '../models/Ong/OngDAO'
 
-export default class OngHandler {
+class OngController {
 	public async create(req: Request, res: Response): Promise<Response> {
 		const { name, email, whatsapp, city, uf } = req.body
-
 		try {
 			const ongPayload = new Ong(v4(), name, email, whatsapp, city, uf)
-			const ongRepository = new OngRepository()
-			const ong = await ongRepository.create(ongPayload)
+			const ongDao = new OngDAO('ongs')
+
+			const ong = await ongDao.create(ongPayload)
 
 			return res.status(201).json(ong)
 		} catch (err) {
@@ -21,8 +21,8 @@ export default class OngHandler {
 
 	public async find(req: Request, res: Response): Promise<Response> {
 		try {
-			const ongRepository = new OngRepository()
-			const ongs = await ongRepository.find()
+			const ongDao = new OngDAO('ongs')
+			const ongs = await ongDao.find()
 
 			return res.status(200).json(ongs)
 		} catch (err) {
@@ -30,3 +30,5 @@ export default class OngHandler {
 		}
 	}
 }
+
+export default new OngController()
