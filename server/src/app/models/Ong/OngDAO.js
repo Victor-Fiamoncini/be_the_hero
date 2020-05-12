@@ -6,20 +6,22 @@ export default class OngDAO extends BaseDAO {
 		super(tableName)
 	}
 
-	async create(ong) {
-		await knex(this.tableName).insert({
-			id: ong.id,
-			name: ong.name,
-			email: ong.email,
-			whatsapp: ong.whatsapp,
-			city: ong.city,
-			uf: ong.uf,
-		})
-
-		return ong
+	async index() {
+		return await knex(this.tableName).select('*')
 	}
 
-	async find() {
-		return await knex(this.tableName).select('*')
+	async store(ong) {
+		const [id] = await knex(this.tableName)
+			.insert({
+				id: ong.id,
+				name: ong.name,
+				email: ong.email,
+				whatsapp: ong.whatsapp,
+				city: ong.city,
+				uf: ong.uf,
+			})
+			.returning('id')
+
+		return id
 	}
 }

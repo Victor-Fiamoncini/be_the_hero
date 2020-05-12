@@ -4,25 +4,25 @@ import Ong from '../models/Ong/Ong'
 import OngDAO from '../models/Ong/OngDAO'
 
 class OngController {
-	async create(req, res) {
+	async store(req, res) {
 		const { name, email, whatsapp, city, uf } = req.body
 
 		try {
 			const ongPayload = new Ong(v4(), name, email, whatsapp, city, uf)
 			const ongDao = new OngDAO('ongs')
 
-			const ong = await ongDao.create(ongPayload)
+			const id = await ongDao.store(ongPayload)
 
-			return res.status(201).json(ong)
+			return res.status(201).json({ id })
 		} catch (err) {
 			return res.status(500).json({ error: err })
 		}
 	}
 
-	async find(req, res) {
+	async index(req, res) {
 		try {
 			const ongDao = new OngDAO('ongs')
-			const ongs = await ongDao.find()
+			const ongs = await ongDao.index()
 
 			return res.status(200).json(ongs)
 		} catch (err) {
