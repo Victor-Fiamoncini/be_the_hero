@@ -1,14 +1,17 @@
-import IncidentDAO from '../models/Incident/IncidentDAO'
+import OngDAO from '../models/Ong/OngDAO'
 
 class SessionController {
-	async index(req, res) {
-		const ongId = req.headers.authorization
+	async store(req, res) {
+		const { id } = req.body
 
 		try {
-			const incidentDao = new IncidentDAO('incidents')
-			const incidents = await incidentDao.findByOngId(ongId)
+			const ongDao = new OngDAO('ongs')
+			const ong = await ongDao.findById(id)
 
-			return res.status(200).json(incidents)
+			if (!ong)
+				return res.status(400).json({ error: 'No ONG found with this ID' })
+
+			return res.status(200).json(ong)
 		} catch (err) {
 			return res.status(500).json({ error: err })
 		}

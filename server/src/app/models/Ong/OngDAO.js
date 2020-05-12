@@ -10,6 +10,10 @@ export default class OngDAO extends BaseDAO {
 		return await knex(this.tableName).select('*')
 	}
 
+	async findById(id) {
+		return await knex(this.tableName).where('id', id).select('name').first()
+	}
+
 	async store(ong) {
 		const [id] = await knex(this.tableName)
 			.insert({

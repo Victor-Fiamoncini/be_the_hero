@@ -19,9 +19,15 @@ class IncidentController {
 	}
 
 	async index(req, res) {
+		const { page = 1 } = req.query
+
 		try {
 			const incidentDao = new IncidentDAO('incidents')
-			const incidents = await incidentDao.index()
+
+			const [count] = await incidentDao.findCount()
+			const incidents = await incidentDao.findAndPaginate(page)
+
+			res.header('X-Total-Count', count['count'])
 
 			return res.status(200).json(incidents)
 		} catch (err) {
