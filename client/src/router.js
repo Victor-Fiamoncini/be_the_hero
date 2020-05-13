@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Logon from './pages/Logon'
 import Register from './pages/Register'
 import Profile from './pages/Profile'
+import NewIncident from './pages/NewIncident'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
 			path: '/perfil',
 			name: 'profile',
 			component: Profile,
+		},
+		{
+			path: '/casos/novo',
+			name: 'newIncident',
+			component: NewIncident,
 		},
 	],
 })

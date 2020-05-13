@@ -34,13 +34,26 @@ button {
 	cursor: pointer;
 }
 
-form input {
-	width: 100%;
-	height: 60px;
-	color: #333;
-	border: 1px solid #dcdce6;
-	border-radius: 8px;
-	padding: 0 24px;
+form {
+	input {
+		width: 100%;
+		height: 60px;
+		color: #333;
+		border: 1px solid #dcdce6;
+		border-radius: 8px;
+		padding: 0 24px;
+	}
+	textarea {
+		resize: vertical;
+		width: 100%;
+		min-height: 140px;
+		height: 60px;
+		color: #333;
+		border: 1px solid #dcdce6;
+		border-radius: 8px;
+		padding: 16px 24px;
+		line-height: 1.4;
+	}
 }
 
 .button {

@@ -1,50 +1,34 @@
 <template>
-	<div class="register-container">
+	<div class="new-incident-container">
 		<div class="content">
 			<section>
 				<img src="../assets/logo.svg" alt="Be The Hero" title="Be The Hero">
-				<h1>Cadastro</h1>
-				<p>Faça seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos da sua ONG.</p>
-				<router-link class="back-link" to="/">
+				<h1>Cadastrar novo caso</h1>
+				<p>Descreva o caso detalhadamente para encontrar um herói para resolver isso.</p>
+				<router-link class="back-link" to="/perfil">
 					<feather type="arrow-left" size="16" stroke="#e02041" />
-					Voltar para o logon
+					Voltar para home
 				</router-link>
 			</section>
 			<form>
 				<input
 					type="text"
-					name="name"
-					placeholder="Nome da ONG"
-					v-model="name"
+					name="title"
+					placeholder="Título do caso"
+					v-model="title"
 				>
-				<input
-					type="email"
-					name="email"
-					placeholder="E-mail"
-					v-model="email"
-				>
+				<textarea
+					type="text"
+					name="description"
+					placeholder="Descrição"
+					v-model="description"
+				></textarea>
 				<input
 					type="text"
-					name="whatsapp"
-					placeholder="Whatsapp"
-					v-model="whatsapp"
+					name="value"
+					placeholder="Valor em reais"
+					v-model="value"
 				>
-				<div class="input-group">
-					<input
-						type="text"
-						name="city"
-						placeholder="Cidade"
-						v-model="city"
-					>
-					<input
-						type="text"
-						name="uf"
-						placeholder="UF"
-						v-model="uf"
-						v-bind:style="{ width: '80px' }"
-						maxlength="2"
-					>
-				</div>
 				<button class="button" type="submit">Cadastrar</button>
 			</form>
 		</div>
@@ -53,19 +37,17 @@
 
 <script>
 export default {
-	name: 'Register',
+	name: 'NewIncident',
 	data: () => ({
-		name: '',
-		email: '',
-		whatsapp: '',
-		city: '',
-		uf: '',
+		title: '',
+		description: '',
+		value: '',
 	}),
 }
 </script>
 
 <style lang="scss">
-.register-container {
+.new-incident-container {
 	width: 100%;
 	max-width: 1120px;
 	height: 100vh;
@@ -98,14 +80,9 @@ export default {
 		form {
 			width: 100%;
 			max-width: 450px;
-			input {
+			input,
+			textarea {
 				margin: 8px 0 0;
-			}
-			.input-group {
-				display: flex;
-				input:first-of-type {
-					margin-right: 8px;
-				}
 			}
 		}
 	}
