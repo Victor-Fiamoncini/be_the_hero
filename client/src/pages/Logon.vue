@@ -6,10 +6,10 @@
 				<h1>Faça seu logon</h1>
 				<input type="text" placeholder="Seu ID">
 				<button class="button" type="submit">Entrar</button>
-				<a href="/cadastro">
+				<router-link class="back-link" to="/cadastro">
 					<feather type="log-in" size="16" stroke="#e02041" />
 					Não tenho cadastro
-				</a>
+				</router-link>
 			</form>
 		</section>
 		<img src="../assets/heroes.png" alt="Heroes" title="Heroes">
@@ -30,7 +30,7 @@ export default {
 	margin: 0 auto;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	section.form {
 		width: 100%;
 		max-width: 350px;
@@ -40,22 +40,6 @@ export default {
 			h1 {
 				font-size: 2rem;
 				margin: 0 0 32px;
-			}
-			a {
-				display: flex;
-				align-items: center;
-				margin: 40px 0 0;
-				color: #41414d;
-				font-size: 1.125rem;
-				font-weight: 500;
-				text-decoration: none;
-				transition: opacity .2s;
-				&:hover {
-					opacity: 0.8;
-				}
-				svg {
-					margin: 0 10px 0 0;
-				}
 			}
 		}
 	}

@@ -15,6 +15,7 @@ export default {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	outline-color: #e02041;
 }
 
 body {
@@ -59,6 +60,23 @@ form input {
 	transition: all .3s;
 	&:hover {
 		filter: brightness(90%);
+	}
+}
+
+.back-link {
+	display: flex;
+	align-items: center;
+	margin: 40px 0 0;
+	color: #41414d;
+	font-size: 1.125rem;
+	font-weight: 500;
+	text-decoration: none;
+	transition: opacity .2s;
+	&:hover {
+		opacity: 0.8;
+	}
+	svg {
+		margin: 0 10px 0 0;
 	}
 }
 </style>
