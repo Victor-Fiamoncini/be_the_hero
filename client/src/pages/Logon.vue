@@ -1,18 +1,37 @@
 <template>
 	<div class="logon-container">
 		<section class="form">
-			<img src="../assets/logo.svg" alt="Be The Hero" title="Be The Hero">
-			<form v-on:submit="handleFormSubmit">
+			<img
+				src="../assets/logo.svg"
+				alt="Be The Hero"
+				title="Be The Hero"
+			/>
+			<form v-on:submit="submit">
 				<h1>Faça seu logon</h1>
-				<input type="text" v-model="id" placeholder="Seu ID">
-				<button class="button" type="submit">Entrar</button>
+				<input
+					type="text"
+					placeholder="Seu ID"
+					required
+					v-model="form.id"
+				/>
+				<button class="button" type="submit">
+					Entrar
+				</button>
 				<router-link class="back-link" to="/cadastro">
-					<feather type="log-in" size="16" stroke="#e02041" />
+					<feather
+						type="log-in"
+						size="16"
+						stroke="#e02041"
+					/>
 					Não tenho cadastro
 				</router-link>
 			</form>
 		</section>
-		<img src="../assets/heroes.png" alt="Heroes" title="Heroes">
+		<img
+			src="../assets/heroes.png"
+			alt="Heroes"
+			title="Heroes"
+		/>
 	</div>
 </template>
 
@@ -22,14 +41,17 @@ import { mapActions } from 'vuex'
 export default {
 	name: 'Logon',
 	data: () => ({
-		id: ''
+		form: {
+			id: ''
+		}
 	}),
 	methods: {
-		...mapActions(['login']),
-		handleFormSubmit(event) {
+		...mapActions('ong', ['actionLogin']),
+
+		submit(event) {
 			event.preventDefault()
 
-			this.login(this.id)
+			this.actionLogin(this.form)
 		}
 	},
 }

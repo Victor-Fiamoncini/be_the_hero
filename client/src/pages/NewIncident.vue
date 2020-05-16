@@ -2,34 +2,44 @@
 	<div class="new-incident-container">
 		<div class="content">
 			<section>
-				<img src="../assets/logo.svg" alt="Be The Hero" title="Be The Hero">
+				<img
+					src="../assets/logo.svg"
+					alt="Be The Hero"
+					title="Be The Hero"
+				/>
 				<h1>Cadastrar novo caso</h1>
 				<p>Descreva o caso detalhadamente para encontrar um herói para resolver isso.</p>
 				<router-link class="back-link" to="/perfil">
-					<feather type="arrow-left" size="16" stroke="#e02041" />
+					<feather
+						type="arrow-left"
+						size="16"
+						stroke="#e02041"
+					/>
 					Voltar para home
 				</router-link>
 			</section>
-			<form>
+			<form v-on:submit="submit">
 				<input
 					type="text"
 					name="title"
 					placeholder="Título do caso"
-					v-model="title"
-				>
+					v-model="form.title"
+				/>
 				<textarea
 					type="text"
 					name="description"
 					placeholder="Descrição"
-					v-model="description"
+					v-model="form.description"
 				></textarea>
 				<input
 					type="text"
 					name="value"
 					placeholder="Valor em reais"
-					v-model="value"
-				>
-				<button class="button" type="submit">Cadastrar</button>
+					v-model="form.value"
+				/>
+				<button class="button" type="submit">
+					Cadastrar
+				</button>
 			</form>
 		</div>
 	</div>
@@ -39,10 +49,17 @@
 export default {
 	name: 'NewIncident',
 	data: () => ({
-		title: '',
-		description: '',
-		value: '',
+		form: {
+			title: '',
+			description: '',
+			value: '',
+		},
 	}),
+	methods: {
+		submit(event) {
+			event.preventDefault()
+		},
+	},
 }
 </script>
 

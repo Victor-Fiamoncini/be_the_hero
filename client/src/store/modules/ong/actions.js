@@ -2,14 +2,12 @@ import OngTypes from './types'
 import router from '../../../router'
 import api from '../../../services/api'
 
-export async function actionRegister({ commit }, payload) {
+export async function actionRegister({ dispatch }, payload) {
 	try {
 		const res = await api.post('/ongs', payload)
 		const { id } = res.data
 
-		commit(OngTypes.SET_ID, id)
-
-		localStorage.setItem('ong_id', id)
+		dispatch('actionSetId', id)
 
 		alert(`Seu ID de acesso: ${id}`)
 		router.push('/')
@@ -18,13 +16,25 @@ export async function actionRegister({ commit }, payload) {
 	}
 }
 
-export async function actionLogin({ commit }, payload) {
+export async function actionLogin({ dispatch }, payload) {
 	try {
-		await api.post('/sessions', { payload })
+		await api.post('/sessions', payload)
 
-		commit(OngTypes.SET_ID, payload)
-		localStorage.setItem('ong_id', payload)
+		dispatch('actionSetId', payload)
+
+		localStorage.setItem('ong_id', payload.id)
 	} catch (err) {
+		dispatch('actionSetId', { id: '' })
+		localStorage.removeItem('ong_id')
+
 		alert('Falha no login, tente novamente')
 	}
+}
+
+export function actionSetId({ commit }, payload) {
+	commit(OngTypes.SET_ID, payload)
+}
+
+export function actionSetOng({ commit }, payload) {
+	commit(OngTypes.SET_ONG, payload)
 }

@@ -2,30 +2,59 @@
 	<div class="register-container">
 		<div class="content">
 			<section>
-				<img src="../assets/logo.svg" alt="Be The Hero" title="Be The Hero">
+				<img
+					src="../assets/logo.svg"
+					alt="Be The Hero"
+					title="Be The Hero"
+				/>
 				<h1>Cadastro</h1>
 				<p>Faça seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos da sua ONG.</p>
 				<router-link class="back-link" to="/">
-					<feather type="arrow-left" size="16" stroke="#e02041" />
+					<feather
+						type="arrow-left"
+						size="16"
+						stroke="#e02041"
+					/>
 					Voltar para o logon
 				</router-link>
 			</section>
-			<form v-on:submit="handleFormSubmit">
-				<input type="text" name="name" placeholder="Nome da ONG" v-model="name">
-				<input type="email" name="email" placeholder="E-mail" v-model="email">
-				<input type="text" name="whatsapp" placeholder="Whatsapp" v-model="whatsapp">
+			<form v-on:submit="submit">
+				<input
+					type="text"
+					name="name"
+					placeholder="Nome da ONG"
+					v-model="form.name"
+				/>
+				<input
+					type="email"
+					name="email"
+					placeholder="E-mail"
+					v-model="form.email"
+				/>
+				<input
+					type="text"
+					name="whatsapp"
+					placeholder="Whatsapp"
+					v-model="form.whatsapp"
+				/>
 				<div class="input-group">
-					<input type="text" name="city" placeholder="Cidade" v-model="city">
+					<input
+						type="text"
+						name="city"
+						placeholder="Cidade"
+						v-model="form.city"
+					/>
 					<input
 						type="text"
 						name="uf"
 						placeholder="UF"
-						v-model="uf"
-						v-bind:style="{ width: '80px' }"
+						v-model="form.uf"
 						maxlength="2"
-					>
+					/>
 				</div>
-				<button class="button" type="submit">Cadastrar</button>
+				<button class="button" type="submit">
+					Cadastrar
+				</button>
 			</form>
 		</div>
 	</div>
@@ -37,24 +66,21 @@ import { mapActions } from 'vuex'
 export default {
 	name: 'Register',
 	data: () => ({
-		name: 'APAD',
-		email: 'apad@mail.com',
-		whatsapp: '12121212',
-		city: 'Rio do Sul',
-		uf: 'SC',
+		form: {
+			name: 'APAD',
+			email: 'apad@mail.com',
+			whatsapp: '12121212',
+			city: 'Rio do Sul',
+			uf: 'SC',
+		},
 	}),
 	methods: {
 		...mapActions('ong', ['actionRegister']),
-		handleFormSubmit(event) {
+
+		submit(event) {
 			event.preventDefault()
 
-			this.actionRegister({
-				name: this.name,
-				email: this.email,
-				whatsapp: this.whatsapp,
-				city: this.city,
-				uf: this.uf,
-			})
+			this.actionRegister(this.form)
 		}
 	},
 }
@@ -99,8 +125,13 @@ export default {
 			}
 			.input-group {
 				display: flex;
-				input:first-of-type {
-					margin-right: 8px;
+				input {
+					&:first-of-type {
+						margin-right: 8px;
+					}
+					&[name=uf] {
+						width: 80px;
+					}
 				}
 			}
 		}

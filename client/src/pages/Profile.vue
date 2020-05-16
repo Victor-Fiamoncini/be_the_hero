@@ -1,13 +1,21 @@
 <template>
 	<div class="profile-container">
 		<header>
-			<img src="../assets/logo.svg" alt="Be The Hero" title="Be The Hero">
+			<img
+				src="../assets/logo.svg"
+				alt="Be The Hero"
+				title="Be The Hero"
+			/>
 			<span>Bem vinda, ONG_NAME</span>
 			<router-link class="button" to="/casos/novo">
 				Cadastrar novo caso
 			</router-link>
 			<button>
-				<feather type="power" size="18" stroke="#e02041" />
+				<feather
+					type="power"
+					size="18"
+					stroke="#e02041"
+				/>
 			</button>
 		</header>
 		<h1>Casos cadastrados</h1>
@@ -20,7 +28,11 @@
 				<strong>Valor</strong>
 				<p>R$ 120,00</p>
 				<button type="button">
-					<feather type="trash-2" size="20" stroke="#a8a8b3" />
+					<feather
+						type="trash-2"
+						size="20"
+						stroke="#a8a8b3"
+					/>
 				</button>
 			</li>
 		</ul>
