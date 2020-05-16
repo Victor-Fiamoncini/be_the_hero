@@ -2,8 +2,8 @@
 
 Simple ONGs helper web application, built with 💚 Vue.JS, Express, Knex, Vuex, Vue Router...
 
-## Como Instalar e Utilizar 🛠
-Utilizando yarn (pasta server):
+## How to install and run 🛠
+Using yarn (server folder):
 
 ```bash
 $ yarn 
@@ -11,7 +11,7 @@ $ yarn build
 $ yarn start
 ```
 
-Utilizando yarn (pasta client):
+Using yarn (client folder):
 
 ```bash
 $ yarn 
