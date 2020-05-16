@@ -8,6 +8,7 @@ export async function actionRegister(context, payload) {
 		await api.post('/ongs', payload)
 
 		alert('Cadastro efetuado com sucesso!')
+
 		router.push('/')
 	} catch (err) {
 		alert('Erro ao cadastrar, tente novamnete')
@@ -20,6 +21,7 @@ export async function actionLogin({ dispatch }, payload) {
 
 		dispatch('actionSetToken', res.data.token)
 		dispatch('actionSetOng', res.data.ong)
+
 		router.push('/perfil')
 	} catch (err) {
 		dispatch('actionUnsetSession')
@@ -35,17 +37,20 @@ export function actionCheckToken({ dispatch, state }) {
 	const token = localStorage.getItem('auth_token')
 
 	if (!token) {
+		dispatch('actionUnsetSession', token)
+
 		return false
 	}
 
 	dispatch('actionSetToken', token)
+	dispatch('actionLoadSession')
 }
 
 export async function actionLoadSession({ dispatch }) {
 	try {
 		const res = await api.get('/sessions')
 
-		dispatch('actionSetOng', res.data.ong)
+		dispatch('actionSetOng', res.data)
 	} catch (err) {
 		dispatch('actionUnsetSession')
 	}

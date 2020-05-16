@@ -4,7 +4,7 @@ export default async (to, from, next) => {
 	document.title = `Be The Hero - ${to.name}`
 
 	await store.dispatch('ong/actionCheckToken')
-	const hasToken = store.getters['ong/hasToken']
+	const hasToken = store.getters['ong/getToken']
 
 	if (to.matched.some((record) => record.meta.requiresAuth)) {
 		if (hasToken) {

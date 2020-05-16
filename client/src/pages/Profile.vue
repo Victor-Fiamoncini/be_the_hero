@@ -6,11 +6,11 @@
 				alt="Be The Hero"
 				title="Be The Hero"
 			/>
-			<span>Bem vinda, ONG_NAME</span>
+			<span>Bem vinda, {{ getOng.name }}</span>
 			<router-link class="button" to="/casos/novo">
 				Cadastrar novo caso
 			</router-link>
-			<button>
+			<button v-on:click="logoff">
 				<feather
 					type="power"
 					size="18"
@@ -40,13 +40,23 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
 	name: 'Profile',
 	computed: {
-		...mapGetters([])
-	}
+		...mapGetters('ong', ['getOng']),
+		...mapGetters('indicent', ['getOngIncidents']),
+	},
+	methods: {
+		...mapActions('ong', ['actionUnsetSession']),
+
+		logoff() {
+			this.actionUnsetSession()
+
+			this.$router.push({ name: 'Logon' })
+		},
+	},
 }
 </script>
 

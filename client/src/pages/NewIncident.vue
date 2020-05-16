@@ -46,18 +46,24 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
 	name: 'NewIncident',
 	data: () => ({
 		form: {
-			title: '',
-			description: '',
-			value: '',
+			title: 'Caso de fursto',
+			description: 'Furto de um gato preto',
+			value: '200.00',
 		},
 	}),
 	methods: {
+		...mapActions('incident', ['actionStoreIncident']),
+
 		submit(event) {
 			event.preventDefault()
+
+			this.actionStoreIncident(this.form)
 		},
 	},
 }

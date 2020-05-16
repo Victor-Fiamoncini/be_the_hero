@@ -73,12 +73,12 @@ export default {
 	name: 'Register',
 	data: () => ({
 		form: {
-			name: 'APAD',
-			email: 'apad@mail.com',
-			password: 'adminadmin',
-			whatsapp: '12121212',
-			city: 'Rio do Sul',
-			uf: 'SC',
+			name: '',
+			email: '',
+			password: '',
+			whatsapp: '',
+			city: '',
+			uf: '',
 		},
 	}),
 	methods: {

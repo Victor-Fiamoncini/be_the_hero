@@ -1,0 +1,3 @@
+export default {
+	FETCH_ONG_INCIDENTS: 'INCIDENT/FETCH_ONG_INCIDENTS',
+}
