@@ -2,11 +2,17 @@ import IncidentTypes from './types'
 import router from '../../../router'
 import api from '../../../services/api'
 
-export async function actionFetchIncidents({ dispatch }) {
-	console.log('1')
+export async function actionFetchOngIncidents({ dispatch }) {
+	try {
+		const res = await api.get('/profile')
+
+		dispatch('actionSetOngIncidents', res.data)
+	} catch (err) {
+		alert('Erro ao buscar os casos de sua ONG')
+	}
 }
 
-export async function actionStoreIncident({ dispatch }, payload) {
+export async function actionStoreIncident(context, payload) {
 	try {
 		await api.post('/incidents', payload)
 
@@ -14,6 +20,21 @@ export async function actionStoreIncident({ dispatch }, payload) {
 
 		router.push({ name: 'Perfil' })
 	} catch (err) {
-		alert('Erro ao cadastrar, tente novamnete')
+		alert('Erro ao cadastrar o caso, tente novamente')
 	}
+}
+
+export async function actionDestroyIncident({ dispatch }, payload) {
+	try {
+		await api.delete(`/incidents/${payload}`)
+
+		dispatch('actionFetchOngIncidents')
+		// alert('Caso apagado com sucesso!')
+	} catch (err) {
+		alert('Erro ao apagar o caso, tente novamente')
+	}
+}
+
+export function actionSetOngIncidents({ commit }, payload) {
+	commit(IncidentTypes.SET_ONG_INCIDENTS, payload)
 }

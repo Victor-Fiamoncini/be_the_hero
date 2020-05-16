@@ -10,7 +10,7 @@
 			<router-link class="button" to="/casos/novo">
 				Cadastrar novo caso
 			</router-link>
-			<button v-on:click="logoff">
+			<button v-on:click="handleLogoff">
 				<feather
 					type="power"
 					size="18"
@@ -18,43 +18,54 @@
 				/>
 			</button>
 		</header>
-		<h1>Casos cadastrados</h1>
-		<ul>
-			<li>
-				<strong>CASO:</strong>
-				<p>Caso de teste</p>
-				<strong>Descrição:</strong>
-				<p>Lorem ipsum dolor sit amet.</p>
-				<strong>Valor</strong>
-				<p>R$ 120,00</p>
-				<button type="button">
-					<feather
-						type="trash-2"
-						size="20"
-						stroke="#a8a8b3"
-					/>
-				</button>
-			</li>
-		</ul>
+		<div v-if="getOngIncidents.length > 0">
+			<h1>Casos cadastrados</h1>
+			<ul>
+				<li v-for="incident in getOngIncidents" v-bind:key="incident.id">
+					<strong>CASO:</strong>
+					<p>{{ incident.title }}</p>
+					<strong>Descrição:</strong>
+					<p>{{ incident.description }}</p>
+					<strong>Valor</strong>
+					<p>{{ incident.value }}</p>
+					<button type="button" v-on:click="handleDestroyIncident(incident.id)">
+						<feather
+							type="trash-2"
+							size="20"
+							stroke="#a8a8b3"
+						/>
+					</button>
+				</li>
+			</ul>
+		</div>
+		<div v-else>
+			<h1>Não encontramos nenhum caso cadastrado em sua ONG</h1>
+		</div>
 	</div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
 	name: 'Profile',
+	mounted() {
+		this.actionFetchOngIncidents()
+	},
 	computed: {
 		...mapGetters('ong', ['getOng']),
-		...mapGetters('indicent', ['getOngIncidents']),
+		...mapGetters('incident', ['getOngIncidents']),
 	},
 	methods: {
 		...mapActions('ong', ['actionUnsetSession']),
+		...mapActions('incident', ['actionFetchOngIncidents', 'actionDestroyIncident']),
 
-		logoff() {
+		handleLogoff() {
 			this.actionUnsetSession()
-
 			this.$router.push({ name: 'Logon' })
+		},
+		handleDestroyIncident(id) {
+			this.actionDestroyIncident(id)
 		},
 	},
 }

@@ -9,7 +9,7 @@ export async function actionRegister(context, payload) {
 
 		alert('Cadastro efetuado com sucesso!')
 
-		router.push('/')
+		router.push({ name: 'Logon' })
 	} catch (err) {
 		alert('Erro ao cadastrar, tente novamnete')
 	}
@@ -22,7 +22,7 @@ export async function actionLogin({ dispatch }, payload) {
 		dispatch('actionSetToken', res.data.token)
 		dispatch('actionSetOng', res.data.ong)
 
-		router.push('/perfil')
+		router.push({ name: 'Perfil' })
 	} catch (err) {
 		dispatch('actionUnsetSession')
 		alert('Falha no login, tente novamente')

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import ong from './modules/ong/index'
-import incident from './modules/incident/index'
+import ong from './modules/ong'
+import incident from './modules/incident'
 
 Vue.use(Vuex)
 
