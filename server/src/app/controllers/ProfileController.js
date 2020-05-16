@@ -2,11 +2,9 @@ import IncidentDAO from '../models/Incident/IncidentDAO'
 
 class ProfileController {
 	async index(req, res) {
-		const ongId = req.headers.authorization
-
 		try {
 			const incidentDao = new IncidentDAO('incidents')
-			const incidents = await incidentDao.findByOngId(ongId)
+			const incidents = await incidentDao.findByOngId(req.ongId)
 
 			return res.status(200).json(incidents)
 		} catch (err) {
