@@ -1,15 +1,13 @@
 import OngTypes from './types'
 import router from '../../../router'
 import api from '../../../services/api'
+import setAuthId from '../../../utils/setAuthId'
 
-export async function actionRegister({ dispatch }, payload) {
+export async function actionRegister(context, payload) {
 	try {
 		const res = await api.post('/ongs', payload)
-		const { id } = res.data
 
-		dispatch('actionSetId', id)
-
-		alert(`Seu ID de acesso: ${id}`)
+		alert(`Seu ID de acesso: ${res.data.id}`)
 		router.push('/')
 	} catch (err) {
 		alert('Erro ao cadastrar, tente novamnete')
@@ -21,17 +19,15 @@ export async function actionLogin({ dispatch }, payload) {
 		await api.post('/sessions', payload)
 
 		dispatch('actionSetId', payload)
-
-		localStorage.setItem('ong_id', payload.id)
+		router.push('/perfil')
 	} catch (err) {
 		dispatch('actionSetId', { id: '' })
-		localStorage.removeItem('ong_id')
-
 		alert('Falha no login, tente novamente')
 	}
 }
 
 export function actionSetId({ commit }, payload) {
+	setAuthId(payload.id)
 	commit(OngTypes.SET_ID, payload)
 }
 
