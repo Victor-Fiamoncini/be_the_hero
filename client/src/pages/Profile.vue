@@ -2,7 +2,7 @@
 	<div class="profile-container">
 		<header>
 			<img src="../assets/logo.svg" alt="Be The Hero" title="Be The Hero">
-			<span>Bem vinda, APAD</span>
+			<span>Bem vinda, ONG_NAME</span>
 			<router-link class="button" to="/casos/novo">
 				Cadastrar novo caso
 			</router-link>
@@ -28,8 +28,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
 	name: 'Profile',
+	computed: {
+		...mapGetters([])
+	}
 }
 </script>
 

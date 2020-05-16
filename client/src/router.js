@@ -25,11 +25,17 @@ export default new Router({
 			path: '/perfil',
 			name: 'profile',
 			component: Profile,
+			meta: {
+				auth: true,
+			},
 		},
 		{
 			path: '/casos/novo',
 			name: 'newIncident',
 			component: NewIncident,
+			meta: {
+				auth: true,
+			},
 		},
 	],
 })

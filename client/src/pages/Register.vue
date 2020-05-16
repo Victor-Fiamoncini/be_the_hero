@@ -37,18 +37,18 @@ import { mapActions } from 'vuex'
 export default {
 	name: 'Register',
 	data: () => ({
-		name: '',
-		email: '',
-		whatsapp: '',
-		city: '',
-		uf: '',
+		name: 'APAD',
+		email: 'apad@mail.com',
+		whatsapp: '12121212',
+		city: 'Rio do Sul',
+		uf: 'SC',
 	}),
 	methods: {
-		...mapActions(['storeOng']),
+		...mapActions('ong', ['actionRegister']),
 		handleFormSubmit(event) {
 			event.preventDefault()
 
-			this.storeOng({
+			this.actionRegister({
 				name: this.name,
 				email: this.email,
 				whatsapp: this.whatsapp,
