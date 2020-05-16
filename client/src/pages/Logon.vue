@@ -2,9 +2,9 @@
 	<div class="logon-container">
 		<section class="form">
 			<img src="../assets/logo.svg" alt="Be The Hero" title="Be The Hero">
-			<form>
+			<form v-on:submit="handleFormSubmit">
 				<h1>Faça seu logon</h1>
-				<input type="text" placeholder="Seu ID">
+				<input type="text" v-model="id" placeholder="Seu ID">
 				<button class="button" type="submit">Entrar</button>
 				<router-link class="back-link" to="/cadastro">
 					<feather type="log-in" size="16" stroke="#e02041" />
@@ -17,8 +17,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
 	name: 'Logon',
+	data: () => ({
+		id: ''
+	}),
+	methods: {
+		...mapActions(['login']),
+		handleFormSubmit(event) {
+			event.preventDefault()
+
+			this.login(this.id)
+		}
+	},
 }
 </script>
 

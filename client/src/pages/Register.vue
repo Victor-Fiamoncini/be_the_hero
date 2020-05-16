@@ -10,32 +10,12 @@
 					Voltar para o logon
 				</router-link>
 			</section>
-			<form>
-				<input
-					type="text"
-					name="name"
-					placeholder="Nome da ONG"
-					v-model="name"
-				>
-				<input
-					type="email"
-					name="email"
-					placeholder="E-mail"
-					v-model="email"
-				>
-				<input
-					type="text"
-					name="whatsapp"
-					placeholder="Whatsapp"
-					v-model="whatsapp"
-				>
+			<form v-on:submit="handleFormSubmit">
+				<input type="text" name="name" placeholder="Nome da ONG" v-model="name">
+				<input type="email" name="email" placeholder="E-mail" v-model="email">
+				<input type="text" name="whatsapp" placeholder="Whatsapp" v-model="whatsapp">
 				<div class="input-group">
-					<input
-						type="text"
-						name="city"
-						placeholder="Cidade"
-						v-model="city"
-					>
+					<input type="text" name="city" placeholder="Cidade" v-model="city">
 					<input
 						type="text"
 						name="uf"
@@ -52,6 +32,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
 	name: 'Register',
 	data: () => ({
@@ -61,6 +43,20 @@ export default {
 		city: '',
 		uf: '',
 	}),
+	methods: {
+		...mapActions(['storeOng']),
+		handleFormSubmit(event) {
+			event.preventDefault()
+
+			this.storeOng({
+				name: this.name,
+				email: this.email,
+				whatsapp: this.whatsapp,
+				city: this.city,
+				uf: this.uf,
+			})
+		}
+	},
 }
 </script>
 
