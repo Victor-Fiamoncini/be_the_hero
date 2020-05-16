@@ -1,10 +1,10 @@
 import OngTypes from './types'
 
 export default {
-	[OngTypes.SET_ID]: (state, payload) => {
-		state.id = payload.id
+	[OngTypes.SET_TOKEN]: (state, payload) => {
+		state.token = payload
 	},
 	[OngTypes.SET_ONG]: (state, payload) => {
-		state.name = payload.name
+		state.ong = payload
 	},
 }

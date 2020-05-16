@@ -1,3 +1,3 @@
 export default {
-	getOng: (state) => state.ong,
+	hasToken: (state) => state.token,
 }

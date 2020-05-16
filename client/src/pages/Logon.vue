@@ -9,10 +9,18 @@
 			<form v-on:submit="submit">
 				<h1>Faça seu logon</h1>
 				<input
-					type="text"
-					placeholder="Seu ID"
+					type="email"
+					name="email"
+					placeholder="Seu e-mail"
 					required
-					v-model="form.id"
+					v-model="form.email"
+				/>
+				<input
+					type="password"
+					name="password"
+					placeholder="Sua senha"
+					required
+					v-model="form.password"
 				/>
 				<button class="button" type="submit">
 					Entrar
@@ -42,7 +50,8 @@ export default {
 	name: 'Logon',
 	data: () => ({
 		form: {
-			id: ''
+			email: 'apad@mail.com',
+			password: 'adminadmin',
 		}
 	}),
 	methods: {
@@ -75,6 +84,9 @@ export default {
 			h1 {
 				font-size: 2rem;
 				margin: 0 0 32px;
+			}
+			input {
+				margin: 0 0 8px;
 			}
 		}
 	}

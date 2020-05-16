@@ -4,10 +4,9 @@ import IncidentDAO from '../models/Incident/IncidentDAO'
 class IncidentController {
 	async store(req, res) {
 		const { title, description, value } = req.body
-		const ongId = req.headers.authorization
 
 		try {
-			const incidentPayload = new Incident(title, description, value, ongId)
+			const incidentPayload = new Incident(title, description, value, req.ongId)
 			const incidentDao = new IncidentDAO('incidents')
 
 			const id = await incidentDao.store(incidentPayload)
@@ -37,13 +36,12 @@ class IncidentController {
 
 	async destroy(req, res) {
 		const { id } = req.params
-		const ongId = req.headers.authorization
 
 		try {
 			const incidentDao = new IncidentDAO('incidents')
 			const incident = await incidentDao.findById(id)
 
-			if (incident.ong_id !== ongId)
+			if (incident.ong_id !== req.ongId)
 				return res
 					.status(401)
 					.json({ error: 'Unauthorized: operation not permitted' })

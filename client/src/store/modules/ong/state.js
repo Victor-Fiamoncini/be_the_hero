@@ -1,4 +1,4 @@
 export default {
-	id: '',
-	name: '',
+	ong: {},
+	token: '',
 }

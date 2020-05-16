@@ -1,13 +1,13 @@
 import OngTypes from './types'
 import router from '../../../router'
 import api from '../../../services/api'
-import setAuthId from '../../../utils/setAuthId'
+import setAuthToken from '../../../utils/setAuthToken'
 
 export async function actionRegister(context, payload) {
 	try {
-		const res = await api.post('/ongs', payload)
+		await api.post('/ongs', payload)
 
-		alert(`Seu ID de acesso: ${res.data.id}`)
+		alert('Cadastro efetuado com sucesso!')
 		router.push('/')
 	} catch (err) {
 		alert('Erro ao cadastrar, tente novamnete')
@@ -16,21 +16,52 @@ export async function actionRegister(context, payload) {
 
 export async function actionLogin({ dispatch }, payload) {
 	try {
-		await api.post('/sessions', payload)
+		const res = await api.post('/sessions', payload)
 
-		dispatch('actionSetId', payload)
+		dispatch('actionSetToken', res.data.token)
+		dispatch('actionSetOng', res.data.ong)
 		router.push('/perfil')
 	} catch (err) {
-		dispatch('actionSetId', { id: '' })
+		dispatch('actionUnsetSession')
 		alert('Falha no login, tente novamente')
 	}
 }
 
-export function actionSetId({ commit }, payload) {
-	setAuthId(payload.id)
-	commit(OngTypes.SET_ID, payload)
+export function actionCheckToken({ dispatch, state }) {
+	if (state.token) {
+		return state.token
+	}
+
+	const token = localStorage.getItem('auth_token')
+
+	if (!token) {
+		return false
+	}
+
+	dispatch('actionSetToken', token)
+}
+
+export async function actionLoadSession({ dispatch }) {
+	try {
+		const res = await api.get('/sessions')
+
+		dispatch('actionSetOng', res.data.ong)
+	} catch (err) {
+		dispatch('actionUnsetSession')
+	}
+}
+
+export function actionSetToken({ commit }, payload) {
+	setAuthToken(payload)
+	commit(OngTypes.SET_TOKEN, payload)
 }
 
 export function actionSetOng({ commit }, payload) {
 	commit(OngTypes.SET_ONG, payload)
+}
+
+export function actionUnsetSession({ dispatch }) {
+	setAuthToken('')
+	dispatch('actionSetToken', '')
+	dispatch('actionSetOng', {})
 }

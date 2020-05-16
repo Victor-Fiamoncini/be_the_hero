@@ -32,6 +32,12 @@
 					v-model="form.email"
 				/>
 				<input
+					type="password"
+					name="password"
+					placeholder="Senha"
+					v-model="form.password"
+				/>
+				<input
 					type="text"
 					name="whatsapp"
 					placeholder="Whatsapp"
@@ -69,6 +75,7 @@ export default {
 		form: {
 			name: 'APAD',
 			email: 'apad@mail.com',
+			password: 'adminadmin',
 			whatsapp: '12121212',
 			city: 'Rio do Sul',
 			uf: 'SC',
