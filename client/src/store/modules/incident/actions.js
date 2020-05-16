@@ -8,7 +8,7 @@ export async function actionFetchOngIncidents({ dispatch }) {
 
 		dispatch('actionSetOngIncidents', res.data)
 	} catch (err) {
-		alert('Erro ao buscar os casos de sua ONG')
+		alert('Erro ao buscar os casos da sua ONG')
 	}
 }
 
@@ -29,7 +29,7 @@ export async function actionDestroyIncident({ dispatch }, payload) {
 		await api.delete(`/incidents/${payload}`)
 
 		dispatch('actionFetchOngIncidents')
-		// alert('Caso apagado com sucesso!')
+		alert('Caso apagado com sucesso!')
 	} catch (err) {
 		alert('Erro ao apagar o caso, tente novamente')
 	}

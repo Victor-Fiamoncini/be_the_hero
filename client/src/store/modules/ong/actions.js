@@ -11,7 +11,7 @@ export async function actionRegister(context, payload) {
 
 		router.push({ name: 'Logon' })
 	} catch (err) {
-		alert('Erro ao cadastrar, tente novamnete')
+		alert('Erro ao cadastrar, tente novamente')
 	}
 }
 
