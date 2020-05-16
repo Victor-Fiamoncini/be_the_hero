@@ -7,25 +7,34 @@ export default class OngDAO extends BaseDAO {
 	}
 
 	async index() {
-		return await knex(this.tableName).select('*')
+		return await knex(this.tableName).select([
+			'name',
+			'email',
+			'whatsapp',
+			'city',
+			'uf',
+		])
 	}
 
 	async findById(id) {
-		return await knex(this.tableName).where('id', id).select('name').first()
+		return await knex(this.tableName)
+			.where('id', id)
+			.select(['id', 'name', 'email', 'whatsapp', 'city', 'uf'])
+			.first()
+	}
+
+	async findByEmail(email) {
+		return await knex(this.tableName).where('email', email).select('*').first()
 	}
 
 	async store(ong) {
-		const [id] = await knex(this.tableName)
-			.insert({
-				id: ong.id,
-				name: ong.name,
-				email: ong.email,
-				whatsapp: ong.whatsapp,
-				city: ong.city,
-				uf: ong.uf,
-			})
-			.returning('id')
-
-		return id
+		await knex(this.tableName).insert({
+			name: ong.name,
+			email: ong.email,
+			password: ong.password,
+			whatsapp: ong.whatsapp,
+			city: ong.city,
+			uf: ong.uf,
+		})
 	}
 }

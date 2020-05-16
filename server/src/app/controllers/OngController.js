@@ -1,19 +1,22 @@
-import { v4 } from 'uuid'
-
 import Ong from '../models/Ong/Ong'
 import OngDAO from '../models/Ong/OngDAO'
 
 class OngController {
 	async store(req, res) {
-		const { name, email, whatsapp, city, uf } = req.body
+		const { name, email, password, whatsapp, city, uf } = req.body
 
 		try {
-			const ongPayload = new Ong(v4(), name, email, whatsapp, city, uf)
 			const ongDao = new OngDAO('ongs')
+			const ongPayload = new Ong(name, email, password, whatsapp, city, uf)
 
-			const id = await ongDao.store(ongPayload)
+			if (!ongPayload.validate()) {
+				return res.status(404).json({ error: 'Bad request' })
+			}
 
-			return res.status(201).json({ id })
+			await ongPayload.beforeSave()
+			await ongDao.store(ongPayload)
+
+			return res.status(201).json({ message: 'ONG successfully registered' })
 		} catch (err) {
 			return res.status(500).json({ error: err })
 		}

@@ -30,7 +30,9 @@ export default class IncidentDAO extends BaseDAO {
 	}
 
 	async findByOngId(ongId) {
-		return await knex(this.tableName).where('ong_id', ongId).select('*')
+		return await knex(this.tableName)
+			.where('ong_id', ongId)
+			.select(['id', 'title', 'description', 'value'])
 	}
 
 	async findCount() {
